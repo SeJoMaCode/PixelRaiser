@@ -3,9 +3,39 @@ html
   head
     meta(name='viewport', content='width=device-width', initial-scale='1.0')
     title= title
-    link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/all.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
+
   body
-    block content
-    script(src='/javascripts/jquery-3.6.1.js')
-    script(src='/bootstrap/js/bootstrap.min.js') 
+    nav.navbar.fixed-top.navbar-expand-md.navbar-light
+      .container
+        a.navbar-brand(href='/') PixelRaiser 
+        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarMain')
+          span.navbar-toggler-icon
+
+        #navbarMain.navbar-collapse.collapse
+          ul.navbar-nav.mr-auto
+            li.nav-item
+              a.nav-link(href='/about/') About
+            li.nav-item
+              a.nav-link(href='/canvases/') Ongoing
+            li.nav-item
+              a.nav-link(href='/archive/') Archive 
+            li.nav-item
+              a.nav-link(href='/getting-started/') Getting Started
+            
+    .container.content 
+      block content
+      footer.navbar.fixed-bottom.justify-content-center
+        .row
+          .col-12
+            small &copy; PixelRaiser – SeJoMa 2022
+
+    script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js',
+            integrity='sha384q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo',
+            crossorigin='anonymous')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js',
+            integrity='sha384ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49',
+            crossorigin='anonymous')
+    script(src='/javascripts/bootstrap.min.js') 
