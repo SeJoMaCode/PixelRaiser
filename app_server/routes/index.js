@@ -9,4 +9,5 @@ router.get('/about', ctrlMain.about);
 router.get('/getting-started', ctrlMain.gettingStarted)
 router.get('/archive', ctrlCanvasas.canvasArchive);
 router.get('/canvases', ctrlCanvasas.canvasesCurrent);
+router.get('/canvas', ctrlCanvasas.canvas);
 module.exports = router;

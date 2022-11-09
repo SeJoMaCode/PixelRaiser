@@ -11,8 +11,9 @@ html
     nav.navbar.fixed-top.navbar-expand-md.navbar-light
       .container
         a.navbar-brand(href='/') PixelRaiser 
-        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarMain')
+        button.navbar-toggler(type='button', data-bs-toggle='collapse', data-bs-target='#navbarMain')
           span.navbar-toggler-icon
+          span.icon_bar
 
         #navbarMain.navbar-collapse.collapse
           ul.navbar-nav.mr-auto
@@ -24,6 +25,8 @@ html
               a.nav-link(href='/archive/') Archive 
             li.nav-item
               a.nav-link(href='/getting-started/') Getting Started
+            li.nav-item
+              a.nav-link(href='/canvas/') Canvas
             
     .container.content 
       block content
