@@ -120,11 +120,11 @@ const pixelUpdateOne = (req, res) => {
                         .status(400)
                         .json(err);
                 } else {
-                    let pixel = canvas.pixels.find(el => el.x == req.params.xCoord && el.y == req.params.yCoord)
-                    if(pixel){
-                        pixel.r = req.body.r;
-                        pixel.g = req.body.g;
-                        pixel.b = req.body.b;
+                    // let pixel = canvas.pixels.find(el => el.x == req.params.xCoord && el.y == req.params.yCoord)
+                    if(canvas.pixels[parseInt(req.params.yCoord)+50*req.params.xCoord]){
+                        canvas.pixels[parseInt(req.params.yCoord)+50*req.params.xCoord].r = req.body.r;
+                        canvas.pixels[parseInt(req.params.yCoord)+50*req.params.xCoord].g = req.body.g;
+                        canvas.pixels[parseInt(req.params.yCoord)+50*req.params.xCoord].b = req.body.b;
                         canvas.save((err, pxl) => {
                             if(err){
                                 res
@@ -140,7 +140,7 @@ const pixelUpdateOne = (req, res) => {
                         res
                             .status(404)
                             .json({
-                                "message": "Pixel not found"
+                                "message": req.params.yCoord+50*req.params.xCoord
                             });
                     }
                 }

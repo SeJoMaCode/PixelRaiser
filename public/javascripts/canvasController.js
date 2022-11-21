@@ -45,10 +45,10 @@ c.addEventListener("mousedown", function(e){
 
 changeBtn.addEventListener("click", function(e){    
     axios.put(`${server}/api/canvas/Test/pixel/${selectedX-1}/${selectedY-1}`, {
-                                                                                            r: redSlider.value,
-                                                                                            g: greenSlider.value,
-                                                                                            b: blueSlider.value
-                                                                                            })
+                                                                                r: redSlider.value,
+                                                                                g: greenSlider.value,
+                                                                                b: blueSlider.value
+                                                                                })
 });
 
 async function draw() {

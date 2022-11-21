@@ -16,11 +16,6 @@ router
     .put(ctrlCanvases.canvasUpdateOne)
     .delete(ctrlCanvases.canvasDeleteOne);
 
-// router
-//     .route('/canvas/:canvasName/pixel/:pixelid')
-//     .get(ctrlCanvases.pixelReadOne)
-//     .put(ctrlCanvases.pixelUpdateOne)
-
 router
     .route('/canvas/:canvasName/pixel/:xCoord/:yCoord')
     .get(ctrlCanvases.pixelReadOne)
