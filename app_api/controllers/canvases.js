@@ -189,13 +189,13 @@ const pixelUpdateOne = (req, res) => {
         Canv
             .findOne({name: name})
             .select('pixels')
-            .exec((err, canvas) => {
+            .exec((err, db) => {
                 if (err) {
                     res
                         .status(400)
                         .json(err);
                 } else {
-                    let pixel = canvas.pixels.find(el => el.x == req.params.xCoord && el.y == req.params.yCoord)
+                    let pixel = db.canvas.pixels.find(el => el.x == req.params.xCoord && el.y == req.params.yCoord)
                     if(pixel){
                         pixel.r = req.body.r;
                         pixel.g = req.body.g;
