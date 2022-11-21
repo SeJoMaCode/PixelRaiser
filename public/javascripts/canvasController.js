@@ -18,7 +18,8 @@ let greenLabel = document.getElementById('greenLabel')
 let blueLabel = document.getElementById('blueLabel')
 let pixelPreview = document.getElementById('pixelPreview')
 let changeBtn = document.getElementById('changeBtn')
-const server = window.location.protocol+'//'+window.location.hostname+':'+window.location.port; //http://localhost:3000
+const server = (window.location.port) ? window.location.protocol+'//'+window.location.hostname+':'+window.location.port :
+                                        window.location.protocol+'//'+window.location.hostname;
 
 let info;
 axios.get(server + '/api/canvas/'+document.title)
