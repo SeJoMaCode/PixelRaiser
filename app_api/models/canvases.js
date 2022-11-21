@@ -1,70 +1,79 @@
 const { json } = require('express');
 const mongoose = require('mongoose');
 
-const Pixel = new mongoose.Schema({
+const pixelSchema = new mongoose.Schema({
+    x: {
+        type: Number,
+        min: 0,
+        max: 49
+        },
+    y: {
+        type: Number,
+        min: 0,
+        max: 49
+        },
     r: {
             type: Number,
-            required: true,
             defualt: 255,
             min: 0,
             max: 255
         },
     g: {
             type: Number,
-            required: true,
             defualt: 255,
             min: 0,
             max: 255
         },
     b: {
             type: Number,
-            required: true,
             defualt: 255,
             min: 0,
             max: 255
         }
 });
+const Pixel = mongoose.model('Pixel', pixelSchema)
 
 let defualtPixels = [];
-let defualtRow = [];
-for ( let i = 0; i < 100; i++){
-  defualtRow.push(Pixel)
+for ( let x = 0; x < 50; x++){
+    for ( let y = 0; y < 50; y++){
+        defualtPixels.push(new Pixel({  x: x,
+                                        y: y,
+                                        r: 255,
+                                        g: 255,
+                                        b: 255
+                                    }))
+    }
 }
-for ( let i = 0; i < 100; i++){
-    defualtPixels.push(defualtRow)
-}
-delete defualtRow;
 
 const canvasSchema = new mongoose.Schema({
     name: {
             type: String,
             required: true
         },
+    active: {
+        type: Boolean,
+        default: true
+    },
     description: {
                     type: String,
-                    required: false
                 },
     owner: {
                 type: String,
-                Required: false
             },
     width: {
                 type: Number,
-                required: true,
-                defualt: 100,
+                defualt: 50,
                 min: 50,
                 max: 500
             },
     height: {
                 type: Number,
-                required: true,
-                defualt: 100,
+                defualt: 50,
                 min: 50,
                 max: 500
             },
     pixels: {
-                type: [[Pixel]],
-                required: true,
+                type: [pixelSchema],
                 default: defualtPixels
             }
 });

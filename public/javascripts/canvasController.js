@@ -18,8 +18,19 @@ let greenLabel = document.getElementById('greenLabel')
 let blueLabel = document.getElementById('blueLabel')
 let pixelPreview = document.getElementById('pixelPreview')
 let changeBtn = document.getElementById('changeBtn')
+const server = window.location.protocol+'//'+window.location.hostname+':'+window.location.port; //http://localhost:3000
 
-canvas.addEventListener("mousedown", function(e){
+let info;
+axios.get(server + '/api/canvas/'+document.title)
+    .then(res => {
+        info = res.data;
+        window.requestAnimationFrame(draw);
+    })
+    .catch(err => {
+        console.error(err)
+    })
+
+c.addEventListener("mousedown", function(e){
     let rect = c.getBoundingClientRect();
     let x = Math.ceil((e.clientX - rect.left)/16);
     let y = Math.ceil((e.clientY - rect.top)/16);
@@ -31,11 +42,15 @@ canvas.addEventListener("mousedown", function(e){
     selectedY = y;
 });
 
-changeBtn.addEventListener("click", function(e){
-    pixels[selectedX-1][selectedY-1] = {r:redSlider.value, g:greenSlider.value, b:blueSlider.value}
+changeBtn.addEventListener("click", function(e){    
+    axios.put(`${server}/api/canvas/Test/pixel/${selectedX-1}/${selectedY-1}`, {
+                                                                                            r: redSlider.value,
+                                                                                            g: greenSlider.value,
+                                                                                            b: blueSlider.value
+                                                                                            })
 });
 
-function draw() {
+async function draw() {
     ctx.clearRect(0, 0, width, height);
 
     redLabel.innerHTML = redSlider.value
@@ -46,6 +61,7 @@ function draw() {
 
     for(let x = 0; x<rows; x++){
         for(let y=0; y<collumns; y++){
+            pixels[x][y] = info.pixels[y+collumns*x]
             pixel = pixels[x][y];
             if(x===selectedX-1 && y===selectedY-1){
                 ctx.fillStyle = 'black'
@@ -60,7 +76,13 @@ function draw() {
         }
     }
 
-    window.requestAnimationFrame(draw);
+    await axios.get(server+'/api/canvas/'+document.title)
+        .then(res => {
+            info = res.data;
+            window.requestAnimationFrame(draw);
+        })
+        .catch(err => {
+            console.error(err)
+        })
 }
 
-window.requestAnimationFrame(draw);
