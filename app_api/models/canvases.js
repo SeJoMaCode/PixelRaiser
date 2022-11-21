@@ -36,12 +36,12 @@ const Pixel = mongoose.model('Pixel', pixelSchema)
 let defualtPixels = [];
 for ( let x = 0; x < 50; x++){
     for ( let y = 0; y < 50; y++){
-        defualtPixels.push(new Pixel({  x: x,
-                                        y: y,
-                                        r: 255,
-                                        g: 255,
-                                        b: 255
-                                    }))
+        defualtPixels.push({x: x,
+                            y: y,
+                            r: 255,
+                            g: 255,
+                            b: 255
+                            })
     }
 }
 

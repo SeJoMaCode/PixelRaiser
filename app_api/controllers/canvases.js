@@ -76,38 +76,6 @@ const canvasDeleteOne = (req, res) => {
         .status(200)
         .json({"message" : "Not yet implemented"});
 };
-// const pixelReadOne = (req, res) => {
-//     const name = req.params.canvasName;
-//     if (name) {
-//         Canv
-//             .findOne({name: name})
-//             .select('pixels')
-//             .exec((err, canvas) => {
-//                 if (err) {
-//                     res
-//                         .status(400)
-//                         .json(err);
-//                 } else {
-//                     const pixel = canvas.pixels.id(req.params.pixelid);
-//                     if(pixel){
-//                         res
-//                             .status(200)
-//                             .json(pixel)
-//                     } else {
-//                         res
-//                             .status(404)
-//                             .json({
-//                                 "message": "Pixel not found"
-//                             });
-//                     }
-//                 }
-//             });
-//     } else {
-//         res
-//             .status(404)
-//             .json({"message": "Canvas not found"});
-//     }
-// };
 const pixelReadOne = (req, res) => {
     const name = req.params.canvasName;
     if (name) {
@@ -140,62 +108,19 @@ const pixelReadOne = (req, res) => {
             .json({"message": "Canvas not found"});
     }
 };
-// const pixelUpdateOne = (req, res) => {
-//     const name = req.params.canvasName;
-//     if (name) {
-//         Canv
-//             .findOne({name: name})
-//             .select('pixels')
-//             .exec((err, canvas) => {
-//                 if (err) {
-//                     res
-//                         .status(400)
-//                         .json(err);
-//                 } else {
-//                     const pixel = canvas.pixels.id(req.params.pixelid);
-//                     if(pixel){
-//                         pixel.r = req.body.r;
-//                         pixel.g = req.body.g;
-//                         pixel.b = req.body.b;
-//                         canvas.save((err, pxl) => {
-//                             if(err){
-//                                 res
-//                                     .status(404)
-//                                     .json(err);
-//                             } else {
-//                                 res
-//                                     .status(200)
-//                                     .json(pxl)
-//                             }
-//                         })
-//                     } else {
-//                         res
-//                             .status(404)
-//                             .json({
-//                                 "message": "Pixel not found"
-//                             });
-//                     }
-//                 }
-//             });
-//     } else {
-//         res
-//             .status(404)
-//             .json({"message": "Canvas not found"});
-//     }
-// };
 const pixelUpdateOne = (req, res) => {
     const name = req.params.canvasName;
     if (name) {
         Canv
             .findOne({name: name})
             .select('pixels')
-            .exec((err, db) => {
+            .exec((err, canvas) => {
                 if (err) {
                     res
                         .status(400)
                         .json(err);
                 } else {
-                    let pixel = db.canvas.pixels.find(el => el.x == req.params.xCoord && el.y == req.params.yCoord)
+                    let pixel = canvas.pixels.find(el => el.x == req.params.xCoord && el.y == req.params.yCoord)
                     if(pixel){
                         pixel.r = req.body.r;
                         pixel.g = req.body.g;
