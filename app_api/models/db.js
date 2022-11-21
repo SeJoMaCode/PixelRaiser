@@ -2,12 +2,10 @@ const mongoose = require("mongoose");
 let dbURI = 'mongodb://localhost/PixelRaiser';
 if (process.env.NODE_ENV === 'production'){
     dbURI = process.env.MONGODB_URI;
-    mongoose.connect(dbURI, {   useNewUrlParser: true,
-        dbName: 'PixelRasiser'
-    });
-} else {
-    mongoose.connect(dbURI, {useNewUrlParser: true});
 }
+mongoose.connect(dbURI, {   useNewUrlParser: true,
+                            dbName: 'PixelRaiser'
+                        });
 
 mongoose.connection.on('connected', () => {
     console.log(`Mongoose connected to ${dbURI}`);
