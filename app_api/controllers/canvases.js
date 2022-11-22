@@ -122,7 +122,7 @@ const pixelUpdateOne = (req, res) => {
                 } else {
                     res
                         .status(400)
-                        .json(canvas.pixels);
+                        .json(canvas.pixels[parseInt(req.params.yCoord)+50*req.params.xCoord]);
                     // let pixel = canvas.pixels.find(el => el.x == req.params.xCoord && el.y == req.params.yCoord)
                     // if(canvas.pixels[parseInt(req.params.yCoord)+50*req.params.xCoord]){
                     //     canvas.pixels[parseInt(req.params.yCoord)+50*req.params.xCoord].r = req.body.r;
