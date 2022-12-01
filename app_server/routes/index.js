@@ -8,6 +8,6 @@ router.get('/', ctrlMain.index);
 router.get('/about', ctrlMain.about);
 router.get('/getting-started', ctrlMain.gettingStarted)
 router.get('/archive', ctrlCanvasas.canvasArchive);
-router.get('/canvases', ctrlCanvasas.canvasesCurrent);
+router.get('/canvases', ctrlCanvasas.currentCanvases);
 router.get('/canvas/:canvasName', ctrlCanvasas.canvasInfo);
 module.exports = router;

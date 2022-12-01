@@ -120,10 +120,6 @@ const pixelUpdateOne = (req, res) => {
                         .status(400)
                         .json(err);
                 } else {
-                    // res
-                    //     .status(400)
-                    //     .json(canvas.pixels[parseInt(req.params.yCoord)+50*req.params.xCoord]);
-                    // let pixel = canvas.pixels.find(el => el.x == req.params.xCoord && el.y == req.params.yCoord)
                     let pixel = canvas.pixels[parseInt(req.params.yCoord)+50*req.params.xCoord]
                     if(pixel){
                         pixel.r = req.body.r;

@@ -3,14 +3,15 @@ html
   head
     meta(name='viewport', content='width=device-width', initial-scale='1.0')
     title= title
-    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    //- link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/styles.css')
     link(rel='stylesheet', href='/stylesheets/all.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
 
-  body
-    nav.navbar.fixed-top.navbar-expand-md.navbar-light
+  body.bg-light
+    nav.navbar.fixed-top.navbar-expand-md.navbar-dark.bg-dark
       .container
-        a.navbar-brand(href='/') PixelRaiser 
+        a.text-light.navbar-brand(href='/') PixelRaiser 
         button.navbar-toggler(type='button', data-bs-toggle='collapse', data-bs-target='#navbarMain')
           span.navbar-toggler-icon
           span.icon_bar
@@ -18,15 +19,15 @@ html
         #navbarMain.navbar-collapse.collapse
           ul.navbar-nav.mr-auto
             li.nav-item
-              a.nav-link(href='/about/') About
+              a.text-light.nav-link(href='/about/') About
             li.nav-item
-              a.nav-link(href='/canvases/') Ongoing
+              a.text-light.nav-link(href='/canvases/') Ongoing
             li.nav-item
-              a.nav-link(href='/archive/') Archive 
+              a.text-light.nav-link(href='/archive/') Archive 
             li.nav-item
-              a.nav-link(href='/getting-started/') Getting Started
+              a.text-light.nav-link(href='/getting-started/') Getting Started
             li.nav-item
-              a.nav-link(href='/canvas/') Canvas
+              a.text-light.nav-link(href='/canvas/') Canvas
             
     .container.content 
       block content
