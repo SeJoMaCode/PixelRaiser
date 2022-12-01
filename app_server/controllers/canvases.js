@@ -25,8 +25,28 @@ request(requestOptions, (err, response, body) => {
 });
 
 /* GET canvases home page. */
-const canvasArchive = (req, res) => {
-    res.render('canvasArchive', { title: 'Canvas Archive' });
+const archiveCanvases = (req, res) => {
+    const path = `/api/canvases`;
+    const requestOptions = {
+        url: `${apiOptions.server}${path}`,
+        method: 'GET',
+        json: {active: 0}
+    };
+    request(
+        requestOptions,
+        (err, response, body) => {
+            const data = body;
+            renderCanvasesArchive(req, res, data);
+        }
+    );
+}
+
+/* GET canvases home page. */
+const renderCanvasesArchive = (req, res, responseBody) => {
+    res.render('canvases', {
+        title: 'Archived Canvases',
+        canvases: responseBody
+    });
 }
 
 const currentCanvases = (req, res) => {
@@ -34,7 +54,7 @@ const currentCanvases = (req, res) => {
     const requestOptions = {
         url: `${apiOptions.server}${path}`,
         method: 'GET',
-        json: {}
+        json: {active: 1}
     };
     request(
         requestOptions,
@@ -47,21 +67,8 @@ const currentCanvases = (req, res) => {
 
 /* GET canvases home page. */
 const renderCanvasesCurrent = (req, res, responseBody) => {
-    res.render('canvasesCurrent', {
+    res.render('canvases', {
         title: 'Ongoing Canvases',
-        // canvases: [{
-        //     name: 'Test',
-        //     active: true,
-        //     description: 'test description',
-        //     owner: 'SeJoMa',
-        //     pixels: ''
-        // },{
-        //     name: 'Test3',
-        //     active: true,
-        //     description: 'test2 description',
-        //     owner: 'SeJoMa',
-        //     pixels: ''
-        // }]
         canvases: responseBody
     });
 }
@@ -89,7 +96,7 @@ const canvasInfo = (req, res) => {
 
 
 module.exports = {
-    canvasArchive,
+    archiveCanvases,
     currentCanvases,
     canvasInfo
 };

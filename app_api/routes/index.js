@@ -4,7 +4,7 @@ const ctrlCanvases = require('../controllers/canvases.js');
 
 router
     .route('/canvases')
-    .get(ctrlCanvases.CanvasesByName)
+    .get(ctrlCanvases.Canvases)
 
 router
     .route('/canvas')

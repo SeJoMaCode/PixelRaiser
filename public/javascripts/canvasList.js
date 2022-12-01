@@ -18,6 +18,14 @@ function draw(){
         axios.get(server+'/api/canvas/'+canvases[i].id)
             .then(res => {
                 info = res.data;
+                let badge = document.getElementById(canvases[index].id+'Badge')
+                if(info.active==1){
+                    badge.innerHTML = 'Active'
+                    badge.className = 'badge bg-success ms-auto'
+                } else {
+                    badge.innerHTML = 'Inactive'
+                    badge.className = 'badge bg-danger ms-auto'
+                }
                 let pixels = Array.from(Array(50), () => new Array(50).fill({r:255, g:255, b:255}));
                 for(let x = 0; x<50; x++){
                     for(let y=0; y<50; y++){
@@ -28,6 +36,9 @@ function draw(){
                         
                     }
                 }
+                let card = document.getElementById(canvases[index].id+'Card')
+                card.style.display = ''
+                
             })
             .catch(err => {
                 console.error(err)

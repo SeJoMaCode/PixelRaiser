@@ -6,9 +6,9 @@ html
     //- link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/styles.css')
     link(rel='stylesheet', href='/stylesheets/all.min.css')
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    //- link(rel='stylesheet', href='/stylesheets/style.css')
 
-  body.bg-light
+  body.bg-light(style='padding:50px')
     nav.navbar.fixed-top.navbar-expand-md.navbar-dark.bg-dark
       .container
         a.text-light.navbar-brand(href='/') PixelRaiser 
@@ -26,8 +26,6 @@ html
               a.text-light.nav-link(href='/archive/') Archive 
             li.nav-item
               a.text-light.nav-link(href='/getting-started/') Getting Started
-            li.nav-item
-              a.text-light.nav-link(href='/canvas/') Canvas
             
     .container.content 
       block content

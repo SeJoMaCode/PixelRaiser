@@ -4,13 +4,13 @@ block content
     h1= title
     #Canvases
         each canvas in canvases
-            .card.bg-white
+            .card.bg-white(id=canvas.name+'Card', style='display:none')
                 button(onclick=`document.location='/canvas/${canvas.name}'`).btn.text-start.d-flex
                     canvas(id=canvas.name, width='150', height='150').flex-column.preview
                     .card-block(href="/canvas/Test").flex-column.flex-grow-1
                         h4.d-flex
                             span.text-dark= canvas.name
-                            span(id=canvas.name+'Badge').badge.bg-success.ms-auto= canvas.active
+                            span(id=canvas.name+'Badge').badge.bg-secondary.ms-auto -
                         p.text-dark= canvas.description 
                         h6
                             span.badge.bg-gray.text-dark= canvas.owner

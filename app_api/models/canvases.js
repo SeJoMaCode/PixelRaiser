@@ -51,8 +51,8 @@ const canvasSchema = new mongoose.Schema({
             required: true
         },
     active: {
-        type: Boolean,
-        default: true
+        type: Number,
+        default: 1
     },
     description: {
                     type: String,

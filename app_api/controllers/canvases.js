@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const Canv = mongoose.model('Canvas');
 
-const CanvasesByName = (req, res) => {
-    Canv.find({}, (err, docs) => {
+const Canvases = (req, res) => {
+    Canv.find({active: req.body.active}, (err, docs) => {
         if (err) {
             res
                 .status(400)
@@ -23,7 +23,10 @@ const canvasCreate = (req, res) => {
         } else {
             if(!docs){
                 Canv.create({
-                    name: req.body.name
+                    name: req.body.name,
+                    active: req.body.active,
+                    description: req.body.description,
+                    owner: req.body.owner
                 }, (err, canvas) => {
                     if (err) {
                         res
@@ -153,7 +156,7 @@ const pixelUpdateOne = (req, res) => {
 };
 
 module.exports = {
-    CanvasesByName,
+    Canvases,
     canvasCreate,
     canvasReadOne,
     canvasUpdateOne,
