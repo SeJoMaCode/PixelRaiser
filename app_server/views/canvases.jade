@@ -12,8 +12,7 @@ block content
                             span.text-dark= canvas.name
                             span(id=canvas.name+'Badge').badge.bg-secondary.ms-auto -
                         p.text-dark= canvas.description 
-                        h6
-                            span.badge.bg-gray.text-dark= canvas.owner
+                        h6.badge.bg-gray.text-dark= canvas.owner
 
     script(src="https://unpkg.com/axios/dist/axios.min.js")
     script(src="/javascripts/canvasList.js")

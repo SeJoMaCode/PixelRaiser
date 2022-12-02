@@ -4,19 +4,24 @@ block content
     link(rel='stylesheet', href='/stylesheets/canvas.css')
     h1= title 
     .stuff
-        canvas#canvas(width="800",height="800")
+        canvas#canvas(width="50",height="50")
         .controls
-            h3 Selected Pixel
-            h4(id="pixelOutput") 1, 1
+            h4.label Selected Pixel
+            h4.label(id="pixelOutput") -
             .box(id='pixelPreview')
             .sliderContainer
-                h4(id="redLabel") Red
-                input.slider(type="range", name="Red", min=0, max=255, value=255, id="redSlider", style="background: #f00;")
-                h4(id="greenLabel") Green
+                h4.label(id="redLabel") -
+                input.slider(type="range", name="Red", min=0, max=255, value=255, id="redSlider", style="background: #f00")
+                h4.label(id="greenLabel") -
                 input.slider(type="range", name="Green", min=0, max=255, value=255, id="greenSlider", style="background: #0f0;")
-                h4(id="blueLabel") Blue
+                h4.label(id="blueLabel") -
                 input.slider(type="range", name="Blue", min=0, max=255, value=255, id="blueSlider", style="background: #00f;")
             button(id="changeBtn") Change
+            br
+            br
+            p.text-dark= description 
+            h6.badge.bg-gray.text-dark= owner
+
     script(src="https://unpkg.com/axios/dist/axios.min.js")
     script(src="/javascripts/canvasController.js")
 
