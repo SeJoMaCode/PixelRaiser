@@ -2,4 +2,23 @@ extends layout
 
 block content
   h1= title
-  p This is where you can start your own canvas
+  h3 Create a canvas 
+  form(action='javascript:submit()')
+    label(for='name') Canvas name:
+    br
+    input.form-text#name(type="text", name="name", required)
+    br
+    label(for='description') Description:
+    br
+    textarea.form-text#description(type='text', name='description', required, rows="4", cols="50")
+    br
+    label(for='owner') Author 
+    br
+    input.form-text#owner(type="text", name="owner", required)
+    br
+    br
+    button#submit(type="submit") Submit
+  br
+  h4.bg-warning.text-center#warning
+  script(src="https://unpkg.com/axios/dist/axios.min.js")
+  script(src="/javascripts/canvasMaker.js")

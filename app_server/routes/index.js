@@ -5,7 +5,6 @@ const ctrlCanvasas = require('../controllers/canvases.js');
 
 /* GET home page. */
 router.get('/', ctrlMain.index);
-router.get('/about', ctrlMain.about);
 router.get('/getting-started', ctrlMain.gettingStarted)
 router.get('/archive', ctrlCanvasas.archiveCanvases);
 router.get('/canvases', ctrlCanvasas.currentCanvases);
