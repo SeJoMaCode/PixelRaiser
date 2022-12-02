@@ -38,7 +38,6 @@ c.addEventListener("mousedown", (e) => {
     let rect = c.getBoundingClientRect()
     let x = Math.ceil((e.clientX-rect.left)/pixelWidth);
     let y = Math.ceil((e.clientY-rect.top)/pixelWidth);
-    console.log(e.clientX, e.clientY)
     redSlider.value = pixels[x-1][y-1].r;
     greenSlider.value = pixels[x-1][y-1].g;
     blueSlider.value = pixels[x-1][y-1].b;
