@@ -8,7 +8,7 @@ let submit = async () => {
                                         description: document.getElementById('description').value,
                                         owner: document.getElementById('owner').value,
                                         active: 1
-                                        }, {timeout: 18000})
+                                        }, {timeout: 180000})
             .then(res => {
                 loop = false
                 if(res.data.message == "exists"){

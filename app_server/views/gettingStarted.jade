@@ -6,7 +6,7 @@ block content
   form(action='javascript:submit()')
     label(for='name') Canvas name:
     br
-    input.form-text#name(type="text", name="name", required)
+    input.form-text#name(type="text", name="name", required, autocomplete="off")
     br
     label(for='description') Description:
     br
@@ -14,7 +14,7 @@ block content
     br
     label(for='owner') Author 
     br
-    input.form-text#owner(type="text", name="owner", required)
+    input.form-text#owner(type="text", name="owner", required, autocomplete="off")
     br
     br
     button#submit(type="submit") Submit
