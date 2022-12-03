@@ -19,12 +19,13 @@ let submit = async () => {
                                         active: 1
                                         })
             .then(res => {
-                loop = false
                 if(res.data.message == "exists"){
+                    loop = false
                     document.getElementById('submit').style.display = ''
                     document.getElementById('warning').innerHTML = 'Canvas with this name already exists'
                 } else {
                     let url = encodeURI(server+"/canvas/"+document.getElementById('name').value)
+                    console.log(url)
                     document.location.href = url
                     document.getElementById('warning').innerHTML = `<a href="${url}">If you  did not get redirected your canvas can be accessed at ${url}</a>`
                 }
