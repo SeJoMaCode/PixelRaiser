@@ -1,5 +1,5 @@
-const server = (window.location.port) ? 'http://'+window.location.hostname+':'+window.location.port :
-                                        'http://'+window.location.hostname;
+const server = (window.location.port) ? window.location.protocol+'//'+window.location.hostname+':'+window.location.port :
+                                        window.location.protocol+'//'+window.location.hostname;
 
 let config = {
     headers: {
