@@ -1,5 +1,12 @@
-const server = (window.location.port) ? window.location.protocol+'//'+window.location.hostname+':'+window.location.port :
-                                        window.location.protocol+'//'+window.location.hostname;
+const server = (window.location.port) ? 'http://'+window.location.hostname+':'+window.location.port :
+                                        'http://'+window.location.hostname;
+
+let config = {
+    headers: {
+        "Accept": "application/json,text/plain, /",
+        "Content-Type": "multipart/x-wwww-form-urlencoded"
+    }
+};
 
 let submit = async () => {
     let loop = true
@@ -16,11 +23,10 @@ let submit = async () => {
                     document.getElementById('warning').innerHTML = 'Canvas with this name already exists'
                 } else {
                     let url = encodeURI(server+"/canvas/"+document.getElementById('name').value)
-                    console.log(url)
                     document.location.href = url
                     document.getElementById('warning').innerHTML = `<a href="${url}">If you  did not get redirected your canvas can be accessed at ${url}</a>`
                 }
-            })
+            }, config)
             .catch(err => {
                 console.error(err)
             })
