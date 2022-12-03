@@ -7,7 +7,6 @@ require("./app_api/models/db.js")
 let cors = require('cors');
 
 var indexRouter = require('./app_server/routes/index');
-// var usersRouter = require('./app_server/routes/users');
 var apiRouter = require('./app_api/routes/index');
 
 var app = express();
@@ -24,7 +23,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({origin: true, credentials: true}));
 
 app.use('/', indexRouter);
-// app.use('/users', usersRouter);
 app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
@@ -42,9 +40,11 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', { title: 'ERROR'});
 
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.header("Access-Control-Allow-Headers", "x-access-token, Origin, X-Requested-With, Content-Type, Accept");
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
   next();
 });
 

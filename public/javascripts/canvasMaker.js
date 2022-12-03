@@ -3,8 +3,10 @@ const server = (window.location.port) ? window.location.protocol+'//'+window.loc
 
 let config = {
     headers: {
-        "Accept": "application/json,text/plain, /",
-        "Content-Type": "multipart/x-wwww-form-urlencoded"
+        "Accept": "application/x-wwww-form-urlencoded",
+        "Content-Type": "multipart/x-wwww-form-urlencoded",
+        'Access-Control-Allow-Origin' : '*',
+        'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',  
     }
 };
 
