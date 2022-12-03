@@ -76,8 +76,6 @@ const renderCanvasesCurrent = (req, res, responseBody) => {
 const renderCanvas = (req, res, canvas) => {
     res.render('canvas', {
         title: canvas.name,
-        description: canvas.description,
-        owner: canvas.owner,
     });
 }
 const canvasInfo = (req, res) => {

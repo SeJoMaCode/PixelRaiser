@@ -3,13 +3,12 @@ let ctx = c.getContext('2d');
 
 const rows = 50;
 const collumns = 50;
-let width = c.width;
-let height = c.height;
-let pixelWidth = width < height ? width/rows : height/collumns;
+const width = c.width;
+const height = c.height;
+const pixelWidth = width < height ? width/rows : height/collumns;
 const color = {r:255, g:255, b:255}
 let pixels = Array.from(Array(rows), () => new Array(collumns).fill(color))
-let selectedX = 1;
-let selectedY = 1;
+let selectedX, selectedY = 1
 let pixelOutput = document.getElementById('pixelOutput')
 let redSlider = document.getElementById('redSlider')
 let greenSlider = document.getElementById('greenSlider')
@@ -27,8 +26,6 @@ axios.get(server + '/api/canvas/'+document.title)
     .then(res => {
         info = res.data;
         window.requestAnimationFrame(draw);
-        resize();
-
     })
     .catch(err => {
         console.error(err)
@@ -38,6 +35,7 @@ c.addEventListener("mousedown", (e) => {
     let rect = c.getBoundingClientRect()
     let x = Math.ceil((e.clientX-rect.left)/pixelWidth);
     let y = Math.ceil((e.clientY-rect.top)/pixelWidth);
+    console.log(e.clientX, e.clientY)
     redSlider.value = pixels[x-1][y-1].r;
     greenSlider.value = pixels[x-1][y-1].g;
     blueSlider.value = pixels[x-1][y-1].b;
@@ -45,8 +43,6 @@ c.addEventListener("mousedown", (e) => {
     selectedX = x;
     selectedY = y;
 });
-pixelOutput.innerHTML = `${selectedX}, ${selectedY}`;
-window.addEventListener('resize', resize(), false);
 
 changeBtn.addEventListener("click", function(e){    
     axios.put(`${server}/api/canvas/${document.title}/pixel/${selectedX-1}/${selectedY-1}`, {
@@ -56,36 +52,13 @@ changeBtn.addEventListener("click", function(e){
                                                                                 })
 });
 
-function resize() {
-    let area = document.querySelector('.stuff')
-    if(area.offsetWidth < area.offsetHeight){
-        c.width = area.offsetWidth;
-        c.height = area.offsetWidth;
-    } else {
-        c.width = area.offsetHeight;
-        c.height = area.offsetHeight;
-    }
-    width = c.width;
-    height = c.height;
-    pixelWidth = width < height ? width/rows : height/collumns;
-};
-
 async function draw() {
     ctx.clearRect(0, 0, width, height);
 
-    redLabel.innerHTML = 'Red: ' + redSlider.value
-    greenLabel.innerHTML = 'Green: ' + greenSlider.value
-    blueLabel.innerHTML = 'Blue: ' + blueSlider.value
+    redLabel.innerHTML = redSlider.value
+    greenLabel.innerHTML = greenSlider.value
+    blueLabel.innerHTML = blueSlider.value
     pixelPreview.style.background = `rgb(${redSlider.value}, ${greenSlider.value}, ${blueSlider.value})`
-    redSlider.style.background = `linear-gradient(  to right,
-        rgb(${0}, ${greenSlider.value}, ${blueSlider.value}),
-        rgb(${255},${greenSlider.value}, ${blueSlider.value}))`
-    greenSlider.style.background = `linear-gradient(  to right,
-        rgb(${redSlider.value}, ${0}, ${blueSlider.value}),
-        rgb(${redSlider.value},${255}, ${blueSlider.value}))`
-    blueSlider.style.background = `linear-gradient(  to right,
-        rgb(${redSlider.value}, ${greenSlider.value}, ${0}),
-        rgb(${redSlider.value},${greenSlider.value}, ${255}))`
 
 
     for(let x = 0; x<rows; x++){
